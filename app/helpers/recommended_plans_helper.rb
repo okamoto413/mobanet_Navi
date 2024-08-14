@@ -1,0 +1,2 @@
+module RecommendedPlansHelper
+end

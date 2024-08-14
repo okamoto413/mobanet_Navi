@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>User Inputs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Data usage</th>
+      <th>Call time</th>
+      <th>Sms usage</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_inputs.each do |user_input| %>
+      <tr>
+        <td><%= user_input.user_id %></td>
+        <td><%= user_input.data_usage %></td>
+        <td><%= user_input.call_time %></td>
+        <td><%= user_input.sms_usage %></td>
+        <td><%= link_to 'Show', user_input %></td>
+        <td><%= link_to 'Edit', edit_user_input_path(user_input) %></td>
+        <td><%= link_to 'Destroy', user_input, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User Input', new_user_input_path %>

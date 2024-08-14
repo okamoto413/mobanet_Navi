@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_input.user_id %>
+</p>
+
+<p>
+  <strong>Data usage:</strong>
+  <%= @user_input.data_usage %>
+</p>
+
+<p>
+  <strong>Call time:</strong>
+  <%= @user_input.call_time %>
+</p>
+
+<p>
+  <strong>Sms usage:</strong>
+  <%= @user_input.sms_usage %>
+</p>
+
+<%= link_to 'Edit', edit_user_input_path(@user_input) %> |
+<%= link_to 'Back', user_inputs_path %>

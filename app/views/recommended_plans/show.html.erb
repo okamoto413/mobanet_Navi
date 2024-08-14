@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @recommended_plan.user_id %>
+</p>
+
+<p>
+  <strong>Plan:</strong>
+  <%= @recommended_plan.plan_id %>
+</p>
+
+<p>
+  <strong>Reason:</strong>
+  <%= @recommended_plan.reason %>
+</p>
+
+<%= link_to 'Edit', edit_recommended_plan_path(@recommended_plan) %> |
+<%= link_to 'Back', recommended_plans_path %>
