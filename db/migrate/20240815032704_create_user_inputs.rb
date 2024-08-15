@@ -8,6 +8,5 @@ class CreateUserInputs < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
-    add_index :user_inputs, :user_id
   end
 end

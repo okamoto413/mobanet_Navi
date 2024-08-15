@@ -7,7 +7,5 @@ class CreateRecommendedPlans < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
-    add_index :recommended_plans, :user_id
-    add_index :recommended_plans, :plan_id
   end
 end
