@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :user do
-    email { "MyString" }
-    encrypted_password { "MyString" }
+    email {"user@example.com" }
+    password { "password" }
+    password_confirmation { "password" }
     admin { false }
   end
 end

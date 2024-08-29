@@ -1,34 +1,203 @@
+# <p id="notice"><%= notice %></p>
+
+
+# <p>
+#   <strong>Carrier:</strong>
+#   <%= @plan.carrier %>
+# </p>
+
+# <p>
+#   <strong>Monthly fee:</strong>
+#   <%= @plan.monthly_fee %>
+# </p>
+
+# <p>
+#   <strong>Data capacity:</strong>
+#   <%= @plan.data_capacity %>
+# </p>
+
+# <p>
+#   <strong>Call fee:</strong>
+#   <%= @plan.call_fee %>
+# </p>
+
+# <p>
+#   <strong>Plan type:</strong>
+#   <%= @plan.plan_type %>
+# </p>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @plan.name %>
-</p>
+<h1>プラン詳細</h1>
 
-<p>
-  <strong>Carrier:</strong>
-  <%= @plan.carrier %>
-</p>
+<div class="container">
+  <div class="content">
+    <h2>プラン情報</h2>
+    <table>
+      <tr>
+        <th>キャリア</th>
+        <td><%= @plan.carrier %></td>
+      </tr>
+      <tr>
+        <th>月額料金</th>
+        <td><%= @plan.monthly_fee %></td>
+      </tr>
+      <tr>
+        <th>データ容量</th>
+        <td><%= @plan.data_capacity %></td>
+      </tr>
+      <tr>
+        <th>通話料金</th>
+        <td><%= @plan.call_fee %></td>
+      </tr>
+      <tr>
+        <th>プランタイプ</th>
+        <td><%= @plan.plan_type %></td>
+      </tr>
+    </table>
 
-<p>
-  <strong>Monthly fee:</strong>
-  <%= @plan.monthly_fee %>
-</p>
+    <!-- 編集リンク -->
+    <%= link_to '編集', edit_plan_path(@plan), class: 'btn btn-primary' %>
+    <%= link_to '戻る', plans_path, class: 'btn btn-secondary' %>
+  </div>
+</div>
 
-<p>
-  <strong>Data capacity:</strong>
-  <%= @plan.data_capacity %>
-</p>
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
 
-<p>
-  <strong>Call fee:</strong>
-  <%= @plan.call_fee %>
-</p>
+  .content {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+  }
 
-<p>
-  <strong>Plan type:</strong>
-  <%= @plan.plan_type %>
-</p>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
 
-<%= link_to 'Edit', edit_plan_path(@plan) %> |
-<%= link_to 'Back', plans_path %>
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+
+  td {
+    text-align: left;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+  }
+</style>
+2. 編集ページの作成
+プラン情報を編集するためのフォームを作成します。edit.html.erbの例です。
+
+erb
+コードをコピーする
+<!-- app/views/plans/edit.html.erb -->
+
+<h1>プランの編集</h1>
+
+<div class="container">
+  <%= form_with(model: @plan, local: true) do |form| %>
+    <% if @plan.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
+        <ul>
+          <% @plan.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :carrier %>
+      <%= form.select :carrier, Plan.carriers.keys.map { |c| [c.humanize, c] }, { include_blank: true } %>
+    </div>
+
+    <div class="field">
+      <%= form.label :monthly_fee %>
+      <%= form.number_field :monthly_fee %>
+    </div>
+
+    <div class="field">
+      <%= form.label :data_capacity %>
+      <%= form.text_field :data_capacity %>
+    </div>
+
+    <div class="field">
+      <%= form.label :call_fee %>
+      <%= form.number_field :call_fee %>
+    </div>
+
+    <div class="field">
+      <%= form.label :plan_type %>
+      <%= form.select :plan_type, Plan.plan_types.keys.map { |pt| [pt.humanize, pt] }, { include_blank: true } %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit '更新する', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+  <%= link_to '戻る', plan_path(@plan), class: 'btn btn-secondary' %>
+</div>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .field {
+    margin-bottom: 15px;
+  }
+
+  .actions {
+    margin-top: 20px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+  }
+</style>
