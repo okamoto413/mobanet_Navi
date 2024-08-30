@@ -18,112 +18,82 @@
 
 /* app/assets/stylesheets/application.scss */
 
-/* グローバルな色設定 */
-$primary-color: #aeeeee; // 淡い青系の色
-$secondary-color: #a3d9a5; // 淡い緑系の色
-$background-color: #e0f2f1; // 優しい青緑の背景色
-$text-color: #333333; // テキストのメインカラー
-
-/* Bootstrapのデフォルトスタイルを上書き */
-$navbar-light-color: white;
-$navbar-light-active-color: lighten($secondary-color, 10%);
-$navbar-light-hover-color: lighten($secondary-color, 20%);
-
-/* 背景 */
-body {
-    background-color: $background-color;
-    color: $text-color;
-    margin: 0;
-    padding-top: 70px; // ヘッダーの高さ分の余白
-}
-
-/* ヘッダーとナビゲーション */
+/* ヘッダーの背景色を再設定 */
 .navbar {
-    background-color: $secondary-color;
-
-    .navbar-brand,
-    .nav-link {
-        color: $navbar-light-color;
-
-        &:hover {
-            color: $navbar-light-active-color;
-        }
-    }
+    background-color: #17a2b8 !important;
+    /* MobanetNaviの配色を維持 */
+    /* ヘッダー背景色 */
 }
 
-/* ボタンのスタイル */
-.btn-primary {
-    background-color: $primary-color;
-    border-color: $primary-color;
-
-    &:hover {
-        background-color: lighten($primary-color, 10%);
-        border-color: lighten($primary-color, 10%);
-    }
+.navbar-brand,
+.nav-link {
+    color: white !important;
+    /* ナビゲーションリンクの色 */
 }
 
-.btn-secondary {
-    background-color: $secondary-color;
-    border-color: $secondary-color;
-
-    &:hover {
-        background-color: lighten($secondary-color, 10%);
-        border-color: lighten($secondary-color, 10%);
-    }
+.navbar-nav .nav-link:hover {
+    color: #adb5bd !important;
+    /* リンクホバー時の色 */
 }
 
-/* フォームや入力フィールドのカスタマイズ */
-input[type="text"],
-select,
-textarea,
-.form-control {
-    border: 1px solid $primary-color;
-    border-radius: 0.25rem; // Bootstrapのデフォルトスタイルに合わせた角の丸み
 
-    &:focus {
-        border-color: lighten($primary-color, 10%);
-        box-shadow: 0 0 5px rgba($primary-color, 0.5);
-    }
+.btn-primary,
+.btn-success,
+.btn-danger {
+    background-color: #17a2b8;
+    /* MobanetNaviの配色 */
+    color: #fff;
+    /* テキストを白色に */
+    border-color: #17a2b8;
+    /* 枠線も同じ色 */
 }
 
-/* プレーンテキストのスタイル */
-.form-control-plaintext {
-    color: $text-color;
-    border: none;
+.btn-primary:hover,
+.btn-success:hover,
+.btn-danger:hover {
+    background-color: #138f9c;
+    /* ホバー時に少し暗めに */
+    border-color: #138f9c;
+    /* ホバー時の枠線も変更 */
+    color: #fff;
+    /* ホバー時も白色テキスト */
 }
 
-/* テーブルのスタイル */
-.table {
-    border: 1px solid $primary-color;
-    border-radius: 0.25rem; // テーブルの角の丸み
-
-    thead {
-        background-color: lighten($primary-color, 20%);
-    }
-
-    tbody tr {
-        &:nth-of-type(odd) {
-            background-color: lighten($primary-color, 40%);
-        }
-    }
+/* 新規プラン作成ボタンもMobanetNaviと同じ配色にする */
+.btn.btn-success {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
 }
 
-/* リンクのカスタムスタイル */
-a {
-    color: $primary-color;
-
-    &:hover {
-        color: lighten($primary-color, 10%);
-        text-decoration: underline;
-    }
+.btn.btn-success:hover {
+    background-color: #138f9c;
+    border-color: #138f9c;
 }
 
-/* フラッシュメッセージ */
-.alert {
-    border-radius: 0.25rem;
+
+ body {
+    margin: 0;
+    padding-top: 70px;
+    /* グローバルナビゲーションの高さ分 */
+}
+
+.navbar-nav .nav-link {
+    margin-right: 15px;
+    /* リンク間のスペース */
+}
+
+.flash-message {
+    margin: 20px;
+}
+
+.container {
+    margin-top: 20px;
+    /* コンテンツの上部余白 */
 }
 
 /* 不要な要素の非表示 */
 .profiler-number {
     display: none;
 }
+
+*/

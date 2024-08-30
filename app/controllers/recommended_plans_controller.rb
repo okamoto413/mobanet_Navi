@@ -34,7 +34,7 @@ class RecommendedPlansController < ApplicationController
     @recommended_plan = RecommendedPlan.new(recommended_plan_params)
 
     if @recommended_plan.save
-      redirect_to @recommended_plan, notice: "Recommended plan was successfully created."
+      redirect_to @recommended_plan 
     else
       render :new, status: :unprocessable_entity
     end
@@ -44,7 +44,7 @@ class RecommendedPlansController < ApplicationController
   # PATCH/PUT /recommended_plans/1 or /recommended_plans/1.json
   def update
     if @recommended_plan.update(recommended_plan_params)
-      redirect_to @recommended_plan, notice: "Recommended plan was successfully updated."
+      redirect_to @recommended_plan
     else
       render :edit, status: :unprocessable_entity
     end
@@ -54,7 +54,7 @@ class RecommendedPlansController < ApplicationController
   # DELETE /recommended_plans/1 or /recommended_plans/1.json
   def destroy
     @recommended_plan.destroy
-    redirect_to recommended_plans_url, notice: "Recommended plan was successfully destroyed."
+    redirect_to recommended_plans_url
   end
 
   private
