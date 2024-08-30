@@ -32,9 +32,14 @@ Rails 6.1.7.8
     
     $ rails s
 
+* チェックシート
+    https://docs.google.com/spreadsheets/d/1w1T_0k52ThkJoUMVnoZUS51nIGbcOllRbbqBzYgUpuY/edit?gid=128060095#gid=128060095
 
+* カタログ設計
+    https://docs.google.com/spreadsheets/d/1w1T_0k52ThkJoUMVnoZUS51nIGbcOllRbbqBzYgUpuY/edit?gid=1289984889#gid=1289984889
 
-
+* テーブル定義書
+    https://docs.google.com/spreadsheets/d/1w1T_0k52ThkJoUMVnoZUS51nIGbcOllRbbqBzYgUpuY/edit?gid=982457397#gid=982457397
 
 * ER図
     https://app.diagrams.net/#G15jR7qUoL2xrWElOWJOyjFfsDEdxsbcQB#%7B%22pageId%22%3A%22cvYDwihpyybyqo7qkZra%22%7D
