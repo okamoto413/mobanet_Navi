@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :carrier %>
-    <%= form.number_field :carrier %>
+    <%= form.select :carrier, Plan.carriers.keys.map { |c| [c.titleize, c] }, { prompt: '選択してください' } %>
   </div>
 
   <div class="field">
@@ -38,10 +38,12 @@
 
   <div class="field">
     <%= form.label :plan_type %>
-    <%= form.number_field :plan_type %>
+    <%= form.select :plan_type, Plan.plan_types.keys.map { |p| [p.titleize, p] }, { prompt: '選択してください' } %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+

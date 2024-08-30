@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    models:
+      plan: "プラン" # Planモデルの日本語名
+    attributes:
+      plan:
+        name: "プラン名" # name属性の日本語翻訳
+        carrier: "キャリア" # carrier属性の日本語翻訳
+        data_capacity: "データ容量" # data_capacity属性の日本語翻訳
+        call_fee: "月額通話料"
+        plan_type: "プランタイプ"
+  errors:
+    messages:
+      blank: "を入力してください" # 空欄エラーに対する日本語メッセージ

@@ -3,11 +3,21 @@ class RecommendedPlansController < ApplicationController
 
   # GET /recommended_plans or /recommended_plans.json
   def index
-    @recommended_plans = RecommendedPlan.all
+    # CSVファイルからPlanデータを読み込む
+    @plans = Plan.all
+
+    # @recommended_plansをもとに該当するCSVプランを探すo
+    @recommended_plans = RecommendedPlan.where(user_id: current_user.id).order(created_at: :desc)
+    
+
+    @recommended_plan_details = @recommended_plans.map do |recommended_plan|
+      @plans.find { |plan| plan.id == recommended_plan.plan_id }
+    end
   end
 
   # GET /recommended_plans/1 or /recommended_plans/1.json
   def show
+     @recommended_plans = RecommendedPlan.where(user_id: params[:user_input_id])
   end
 
   # GET /recommended_plans/new
@@ -23,38 +33,28 @@ class RecommendedPlansController < ApplicationController
   def create
     @recommended_plan = RecommendedPlan.new(recommended_plan_params)
 
-    respond_to do |format|
-      if @recommended_plan.save
-        format.html { redirect_to recommended_plan_url(@recommended_plan), notice: "Recommended plan was successfully created." }
-        format.json { render :show, status: :created, location: @recommended_plan }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @recommended_plan.errors, status: :unprocessable_entity }
-      end
+    if @recommended_plan.save
+      redirect_to @recommended_plan 
+    else
+      render :new, status: :unprocessable_entity
     end
   end
+      
 
   # PATCH/PUT /recommended_plans/1 or /recommended_plans/1.json
   def update
-    respond_to do |format|
-      if @recommended_plan.update(recommended_plan_params)
-        format.html { redirect_to recommended_plan_url(@recommended_plan), notice: "Recommended plan was successfully updated." }
-        format.json { render :show, status: :ok, location: @recommended_plan }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @recommended_plan.errors, status: :unprocessable_entity }
-      end
+    if @recommended_plan.update(recommended_plan_params)
+      redirect_to @recommended_plan
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
+
 
   # DELETE /recommended_plans/1 or /recommended_plans/1.json
   def destroy
     @recommended_plan.destroy
-
-    respond_to do |format|
-      format.html { redirect_to recommended_plans_url, notice: "Recommended plan was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to recommended_plans_url
   end
 
   private

@@ -1,0 +1,23 @@
+carrier,plan_name,data_capacity,monthly_fee,plan_type,official_url
+
+0,irumo 0.5GB docomo回線 音声通話SIM,0.5GB,550,0,https://irumo.docomo.ne.jp/plan/
+0,irumo 3GB docomo回線 音声通話SIM,3GB,2167,0,https://irumo.docomo.ne.jp/plan/
+0,irumo 6GB docomo回線 音声通話SIM,6GB,2827,0,https://irumo.docomo.ne.jp/plan/
+
+0,ahamo 20GB docomo回線 音声通話SIM,20GB,2970,0,https://ahamo.com/plan/
+0,ahamo 大盛り 100GB docomo回線 音声通話SIM,100GB,4950,0,https://ahamo.com/plan/
+
+
+1,povo2.0 データ専用 0GB au回線 データeSIM,0GB,0,1,https://povo.jp/spec/
+1,povo2.0 0GB au回線 音声通話SIM,0GB,0,1,https://povo.jp/spec/
+
+1,UQ mobile ミニミニプラン 4GB au回線 音声通話SIM,4GB,2365,1,https://www.uqwimax.jp/mobile/plan/
+1,UQ mobile トクトクプラン 15GB au回線 音声通話SIM,15GB, 最大3465,1,https://www.uqwimax.jp/mobile/plan/
+1,UQ mobile コミコミプラン 20GB au回線 音声通話SIM,20GB,3278,1,https://www.uqwimax.jp/mobile/plan/
+
+
+2,ワイモバイル シンプル2 S 4GB SoftBank回線 音声通話SIM,4GB,2365,0,https://www.ymobile.jp/store/sp/ymsb/
+2,ワイモバイル シンプル2 M 20GB SoftBank回線 音声通話SIM,20GB,最大4015,0,https://www.ymobile.jp/store/sp/ymsb/
+2,ワイモバイル シンプル2 L 30GB SoftBank回線 音声通話SIM,30GB,最大5115,0,https://www.ymobile.jp/store/sp/ymsb/
+
+3,Rakuten最強プラン 無制限 楽天回線 音声通話SIM,制限なし, 最大3278,0,https://network.mobile.rakuten.co.jp/fee/saikyo-plan_a/

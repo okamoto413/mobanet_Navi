@@ -1,16 +1,182 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MobanetNavi</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>MobanetNavi</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <style>
+    body {
+      margin: 0;
+      padding-top: 70px; /* グローバルナビゲーションの高さ分 */
+    }
+    # .navbar {
+    #   background-color: #343a40; /* ヘッダー背景色 */
+    # }
+    # .navbar-brand, .nav-link {
+    #   color: #fff; /* ナビゲーションリンクの色 */
+    # }
+    .navbar-nav .nav-link {
+      margin-right: 15px; /* リンク間のスペース */
+    }
+    # .navbar-nav .nav-link:hover {
+    #   color: #adb5bd; /* リンクホバー時の色 */
+    # }
+    .flash-message {
+      margin: 20px;
+    }
+    .container {
+      margin-top: 20px; /* コンテンツの上部余白 */
+    }
+    # .btn-custom {
+    #   background-color: #007bff;
+    #   color: #fff;
+    # }
+    # .btn-custom:hover {
+    #   background-color: #0056b3;
+    #   color: #fff;
+    # }
+    table {
+      margin-top: 20px;
+      width: 100%;
+    }
+    .form-control {
+      border-radius: 0.25rem; /* フォーム要素の角の丸み */
+    }
+    .form-control-lg, .form-control-sm {
+      border-radius: 0.25rem; /* フォーム要素の角の丸み */
+    }
+    .form-check-input {
+      border-radius: 0.25rem; /* チェックボックスの角の丸み */
+    }
+    .form-control-plaintext {
+      border: none; /* プレーンテキストのスタイル */
+      padding: 0;
+      margin-bottom: 0;
+    }
+    .form-inline .form-control {
+      border-radius: 0.25rem; /* インラインフォーム要素の角の丸み */
+    }
+    # .btn-primary {
+    #   background-color: #007bff;
+    #   border-color: #007bff;
+    # }
+    # .btn-primary:hover {
+    #   background-color: #0056b3;
+    #   border-color: #0056b3;
+    # }
+  # <style>
+  #    body {
+  #     margin: 0;
+  #     padding-top: 70px; /* グローバルナビゲーションの高さ分 */
+  #   }
+  #   .navbar {
+  #     background-color: #17a2b8; /* ヘッダー背景色 */
+  #   }
+  #   .navbar-brand, .nav-link {
+  #     color: white; /* ナビゲーションリンクの色 */
+  #   }
+  #   .navbar-nav .nav-link {
+  #     margin-right: 15px; /* リンク間のスペース */
+  #   }
+  #   .navbar-nav .nav-link:hover {
+  #     color: #adb5bd; /* リンクホバー時の色 */
+  #   }
+  #   .flash-message {
+  #     margin: 20px;
+  #   }
+  #   .container {
+  #     margin-top: 20px; /* コンテンツの上部余白 */
+  #   }
+  #   .btn-custom {
+  #     background-color: #007bff;
+  #     color: #fff;
+  #   }
+  #   .btn-custom:hover {
+  #     background-color: #0056b3;
+  #     color: #fff;
+  #   }
+  #   table {
+  #     margin-top: 20px;
+  #     width: 100%;
+  #   }
+  #   .form-control {
+  #     border-radius: 0.25rem; /* フォーム要素の角の丸み */
+  #   }
+  #   .form-control-lg, .form-control-sm {
+  #     border-radius: 0.25rem; /* フォーム要素の角の丸み */
+  #   }
+  #   .form-check-input {
+  #     border-radius: 0.25rem; /* チェックボックスの角の丸み */
+  #   }
+  #   .form-control-plaintext {
+  #     border: none; /* プレーンテキストのスタイル */
+  #     padding: 0;
+  #     margin-bottom: 0;
+  #   }
+  #   .form-inline .form-control {
+  #     border-radius: 0.25rem; /* インラインフォーム要素の角の丸み */
+  #   }
+  #   .btn-primary {
+  #     background-color: #007bff;
+  #     border-color: #007bff;
+  #   }
+  #   .btn-primary:hover {
+  #     background-color: #0056b3;
+  #     border-color: #0056b3;
+  #   }
+  # </style>
   </head>
 
+
+  
   <body>
+ <!-- グローバルナビゲーション -->
+   
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <a class="navbar-brand" href="#">MobanetNavi</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <% if current_user.admin? %>
+            <li class="nav-item"><%= link_to '管理者画面', rails_admin_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'ユーザ一覧', admin_users_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'ユーザを登録する', new_admin_user_path, class: 'nav-link' %></li>
+          <% end %>
+          <li class="nav-item"><%= link_to 'スマホ代診断', new_user_input_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'プラン一覧', plans_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'アカウント', edit_user_registration_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'アカウント登録', new_user_registration_path, class: 'nav-link' %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+
+      <!-- フラッシュメッセージ -->
+    <div class="flash-message">
+    <% flash.each do |type, message| %>
+      <div class="alert alert-<%= type == 'notice' ? 'info' : 'danger' %>">
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+
+   <div class="container">
     <%= yield %>
+  </div>
+    <!-- BootstrapのJavaScript -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>

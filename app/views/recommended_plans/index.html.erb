@@ -1,31 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Recommended Plans</h1>
+<h1>Recommended Plans（おすすめプラン）</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Plan</th>
-      <th>Reason</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @recommended_plans.each do |recommended_plan| %>
-      <tr>
-        <td><%= recommended_plan.user_id %></td>
-        <td><%= recommended_plan.plan_id %></td>
-        <td><%= recommended_plan.reason %></td>
-        <td><%= link_to 'Show', recommended_plan %></td>
-        <td><%= link_to 'Edit', edit_recommended_plan_path(recommended_plan) %></td>
-        <td><%= link_to 'Destroy', recommended_plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
 
-<%= link_to 'New Recommended Plan', new_recommended_plan_path %>
+<div class="plans-container">
+  <% @recommended_plan_details.each do |plan| %>
+    <div class="plan-box">
+      <h2><%= plan.plan_name %></h2>
+      <p>キャリア: <%=plan.carrier %></p>
+      <p>プラン名: <%=plan.name %></p>
+      <p>プランタイプ: <%=plan.plan_type %></p>
+      <p>月額料金: <%= number_to_currency(plan.monthly_fee, unit: '¥') %></p>
+      <p>データ容量: <%= plan.data_capacity %></p>
+      <p>通話料金: <%= number_to_currency(plan.call_fee || 0, unit: '¥') %></p>
+      <%= link_to '詳しく', plan.official_url, class: 'btn btn-info', target: '_blank' %>
+    </div>
+  <% end %>
+</div>

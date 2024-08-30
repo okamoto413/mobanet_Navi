@@ -1,5 +1,93 @@
-<h1>New User Input</h1>
+<h1>スマホ代 診断</h1>
+<h2>1カ月のご利用状況を入力ください!!</h2>
 
-<%= render 'form', user_input: @user_input %>
+<%= form_with(model: @user_input, local: true) do |form| %>
+  <% if @user_input.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_input.errors.count, "error") %> prohibited this user_input from being saved:</h2>
 
-<%= link_to 'Back', user_inputs_path %>
+      <ul>
+      <% @user_input.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :data_usage, "データ使用量" %>
+    <%= form.select :data_usage,[
+        ['1GB', '1'],
+        ['3GB', '3'],
+        ['6GB', '6'],
+        ['20～30GB', '20-30'],
+        ['30GB以上', '30+']
+      ], { prompt: '選択してください' } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :call_time, "通話時間    ※アプリ通話除く" %>
+    <%= form.select :call_time, [
+        ['なし', 'none'],
+        ['かけ放題', 'unlimited'],
+        ['5分以内かけ放題', '5min_unlimited'],
+        ['10分以内かけ放題', '10min_unlimited'],
+        ['15分以内かけ放題', '15min_unlimited']
+      ], { prompt: '選択してください' } %>
+  </div>
+
+  <div class="field">
+      <%= form.label :monthly_fee, "月額利用料" %>
+      <%= form.select :monthly_fee, [
+      ['1,000円', 1000],
+      ['2,000円', 2000],
+      ['3,000円', 3000],
+      ['4,000円', 4000],
+      ['5,000円', 5000],
+      ['その他', 'other']
+    ], { prompt: '選択してください' }, { onchange: 'toggleOtherField(this)' } %>
+  </div>
+
+   <!-- その他の月額料金 -->
+  <div class="field" id="other_fee_field" style="display: none;">
+    <%= form.label :other_monthly_fee, "その他の月額料金（円）" %>
+    <%= form.number_field :other_monthly_fee, step: 100, min: 0 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :carrier, "キャリア" %>
+    <%= form.select :carrier,
+     Plan.carriers.keys.map { |c| [c.titleize, Plan.carriers[c]] }, { prompt: '選択してください' }
+    %>
+  </div>
+
+  <div class="field">
+    <%= form.label :plan_name, "プランタイプ" %>
+    <%= form.select :plan_name, Plan.plan_types.keys.map { |p| [p.titleize, p] }, { prompt: '選択してください' } %>
+  </div>
+
+
+  <div>
+   <%= form.label :priority_cost, "安さ" %>
+   <%= form.radio_button :priority, 'cost' %>
+  </div>
+  <div>
+    <%= form.label :priority_speed, "通信速度" %>
+    <%= form.radio_button :priority, 'speed' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "診断"%>
+  </div>
+<% end %>
+
+<script>
+  function toggleOtherField(select) {
+    var otherField = document.getElementById('other_fee_field');
+    if (select.value === 'other') {
+      otherField.style.display = 'block';
+    } else {
+      otherField.style.display = 'none';
+    }
+  }
+</script>
