@@ -1,4 +1,6 @@
 class Plan < ApplicationRecord
+  has_many :recommended_plans, dependent: :destroy
+
   validates  :carrier, :monthly_fee, :data_capacity, :call_fee, presence: true
   validates :monthly_fee, :call_fee, numericality: { greater_than_or_equal_to: 0 }
   validates :data_capacity, format: { with: /\A\d+(\.\d+)?(GB|MB)?\z/i, message: "must be a number with optional 'GB' or 'MB'" }
